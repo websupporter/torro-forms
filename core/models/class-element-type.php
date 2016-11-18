@@ -280,6 +280,19 @@ abstract class Torro_Element_Type extends Torro_Base {
 	}
 
 	/**
+	 * Renders the HTML column
+	 *
+	 * @param string $html the HTML for the column
+	 * @param mixed $value the unmodified value
+	 *
+	 * @return string the HTML string
+	 * @since develop
+	 */
+	public function render_value_column_html( $html, $value ) {
+		return $html;
+	}
+
+	/**
 	 * Draws element box in Admin
 	 *
 	 * @return string $html The admin element HTML code

@@ -336,14 +336,21 @@ final class Torro_Result_Entries extends Torro_Form_Result {
 				continue;
 			}
 			$value = $result_value->value;
+
 			if ( is_callable( array( $result_value->element, 'render_value' ) ) ) {
 				$value = call_user_func( array( $result_value->element, 'render_value' ), $value );
 			}
 
-			$html .= '<tr>';
-			$html .= '<td>' . $result_value->element->label . '</td>';
-			$html .= '<td>' . $value . '</td>';
-			$html .= '</tr>';
+			$column_html = '<tr>';
+			$column_html .= '<td>' . $result_value->element->label . '</td>';
+			$column_html .= '<td>' . $value . ' - lalala</td>';
+			$column_html .= '</tr>';
+
+			if ( is_callable( array( $result_value->element, 'render_value_column_html' ) ) ) {
+				$html .= call_user_func( array( $result_value->element, 'render_value_column_html' ), $column_html, $value );
+			} else {
+				$html .= $column_html;
+			}
 		}
 
 		$html .= '</tbody>';

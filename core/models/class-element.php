@@ -234,6 +234,19 @@ class Torro_Element extends Torro_Instance_Base {
 	}
 
 	/**
+	 * Renders the HTML column
+	 *
+	 * @param string $html the HTML for the column
+	 * @param mixed $value the unmodified value
+	 *
+	 * @return string the HTML string
+	 * @since develop
+	 */
+	public function render_value_column_html( $html, $value ) {
+		return $this->type_obj->render_value_column_html( $html, $value );
+	}
+
+	/**
 	 * Draws element box in Admin
 	 *
 	 * @return string $html The admin element HTML code
