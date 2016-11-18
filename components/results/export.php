@@ -67,7 +67,13 @@ class Torro_Export {
 
 			$form = torro()->forms()->get( $form_id );
 			$results = torro()->resulthandlers()->get_registered( 'entries' )->parse_results_for_export( $form_id, 0, -1, 'export', true );
-
+			foreach ( $form->elements as $element ) {
+				$element_type = torro()->element_types()->get_class_name_by_type( $element->type );
+				if ( method_exists( $element_type, 'export_results' ) ) {
+					$element_type = new $element_type();
+					$results = $element_type->export_results( $results, $element );
+				}
+			}
 			$filename = sanitize_title( $form->title );
 
 			do_action( 'torro_export', $form_id, $filename );
